@@ -18,7 +18,7 @@ module.exports = {
         allowNull: false,
       },
     });
-    await queryInterface.addConstraint("users", {
+    await queryInterface.addConstraint("token", {
       type: "foreign key",
       name: "token_user_id",
       fields: ["user_id"],
@@ -30,11 +30,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
+    await queryInterface.dropTable("token");
   },
 };

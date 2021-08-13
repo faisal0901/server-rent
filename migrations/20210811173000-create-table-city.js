@@ -17,23 +17,18 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
     });
-    await queryInterface.createTable("city", {
-      name: "country_foreign_key",
-      type: "foreign key",
-      fields: ["country_id"],
-      references: {
-        table: "country",
-        field: "id",
-      },
-    });
+    // await queryInterface.createTable("city", {
+    //   name: "country_foreign_key",
+    //   type: "foreign key",
+    //   fields: ["country_id"],
+    //   references: {
+    //     table: "country",
+    //     field: "id",
+    //   },
+    // });
   },
 
   down: async (queryInterface, Sequelize) => {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
+    await queryInterface.dropTable("city");
   },
 };

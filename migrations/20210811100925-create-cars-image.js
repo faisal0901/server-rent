@@ -13,6 +13,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      image: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -22,23 +26,18 @@ module.exports = {
         allowNull: false,
       },
     });
-    await queryInterface.createTable("cars_image", {
-      type: "foreign_key",
-      name: "cars_image_foreign_key",
-      fields: ["car_id"],
-      references: {
-        table: "cars",
-        field: "id",
-      },
-    });
+    // await queryInterface.createTable("cars_image", {
+    //   type: "foreign_key",
+    //   name: "cars_image_foreign_key",
+    //   fields: ["car_id"],
+    //   references: {
+    //     table: "cars",
+    //     field: "id",
+    //   },
+    // });
   },
 
   down: async (queryInterface, Sequelize) => {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
+    await queryInterface.dropTable("cars_image");
   },
 };

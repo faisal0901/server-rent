@@ -9,7 +9,7 @@ module.exports = {
         autoIncrement: true,
         type: Sequelize.INTEGER,
       },
-      user: {
+      name: {
         allowNull: false,
         type: Sequelize.STRING,
       },
@@ -26,15 +26,19 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true,
       },
+      password: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      role: {
+        allowNull: false,
+        type: Sequelize.ENUM,
+        values: ["admin", "user"],
+      },
     });
   },
 
   down: async (queryInterface, Sequelize) => {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
+    await queryInterface.dropTable("users");
   },
 };
