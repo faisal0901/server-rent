@@ -50,15 +50,15 @@ module.exports = {
         allowNull: true,
       },
     });
-    // await queryInterface.addConstraint("address", {
-    //   name: "city_id_constraint",
-    //   type: "foreign key",
-    //   fields: ["city_id"],
-    //   references: {
-    //     table: "city",
-    //     field: "id",
-    //   },
-    // });
+    await queryInterface.addConstraint("address", {
+      name: "city_id_constraint",
+      type: "foreign key",
+      fields: ["city_id"],
+      references: {
+        table: "city",
+        field: "id",
+      },
+    });
   },
 
   down: async (queryInterface, Sequelize) => {

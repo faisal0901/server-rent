@@ -24,7 +24,7 @@ module.exports = {
     });
     await queryInterface.addConstraint("rating", {
       type: "foreign key",
-      name: "rating_user",
+      name: "rating_user_foreign_key",
       fields: ["user_id"],
       references: {
         table: "users",

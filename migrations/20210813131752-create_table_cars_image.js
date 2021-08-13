@@ -26,15 +26,15 @@ module.exports = {
         allowNull: false,
       },
     });
-    // await queryInterface.createTable("cars_image", {
-    //   type: "foreign_key",
-    //   name: "cars_image_foreign_key",
-    //   fields: ["car_id"],
-    //   references: {
-    //     table: "cars",
-    //     field: "id",
-    //   },
-    // });
+    await queryInterface.addConstraint("cars_image", {
+      type: "foreign key",
+      name: "cars_image_foreign_key",
+      fields: ["car_id"],
+      references: {
+        table: "cars",
+        field: "id",
+      },
+    });
   },
 
   down: async (queryInterface, Sequelize) => {

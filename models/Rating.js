@@ -1,6 +1,6 @@
 module.exports = (sequelize, dataTypes) => {
-  const Users = sequelize.define(
-    "Users",
+  const Rating = sequelize.define(
+    "Rating",
     {
       id: {
         type: dataTypes.INTEGER,
@@ -8,23 +8,19 @@ module.exports = (sequelize, dataTypes) => {
         primaryKey: true,
         allowNull: false,
       },
-      user: {
+      user_id: {
+        type: dataTypes.INTEGER,
         allowNull: false,
-        type: dataTypes.STRING,
       },
-      profession: {
-        allowNull: true,
+      note: {
         type: dataTypes.STRING,
-      },
-      avatar: {
         allowNull: true,
-        type: dataTypes.STRING,
       },
     },
     {
-      tableName: "users",
-      timeStamps: true,
+      tableName: "rating",
+      timeStamps: false,
     }
   );
-  return Users;
+  return Rating;
 };

@@ -72,15 +72,15 @@ module.exports = {
       },
     });
 
-    // await queryInterface.addConstraint("booking", {
-    //   type: "foreign key",
-    //   name: "booking_car_id",
-    //   fields: ["car_id"],
-    //   references: {
-    //     table: "cars",
-    //     field: "id",
-    //   },
-    // });
+    await queryInterface.addConstraint("booking", {
+      type: "foreign key",
+      name: "booking_car_id",
+      fields: ["car_id"],
+      references: {
+        table: "cars",
+        field: "id",
+      },
+    });
   },
 
   down: async (queryInterface, Sequelize) => {

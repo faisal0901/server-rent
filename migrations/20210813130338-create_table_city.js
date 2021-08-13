@@ -15,17 +15,18 @@ module.exports = {
       },
       country_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
       },
     });
-    // await queryInterface.createTable("city", {
-    //   name: "country_foreign_key",
-    //   type: "foreign key",
-    //   fields: ["country_id"],
-    //   references: {
-    //     table: "country",
-    //     field: "id",
-    //   },
-    // });
+    await queryInterface.addConstraint("city", {
+      type: "foreign key",
+      name: "country_foreign_key",
+      fields: ["country_id"],
+      references: {
+        table: "country",
+        field: "id",
+      },
+    });
   },
 
   down: async (queryInterface, Sequelize) => {
