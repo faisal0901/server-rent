@@ -15,6 +15,7 @@ module.exports = (sequelize, dataTypes) => {
       profession: {
         allowNull: true,
         type: dataTypes.STRING,
+        defaultValue: false,
       },
       avatar: {
         allowNull: true,
@@ -28,10 +29,19 @@ module.exports = (sequelize, dataTypes) => {
         type: dataTypes.STRING,
         allowNull: false,
       },
+      role: {
+        type: dataTypes.STRING,
+        allowNull: false,
+      },
     },
     {
       tableName: "users",
-      timeStamps: false,
+      timestamps: false,
+      onDelete: "cascade",
+      onUpdate: "cascade",
+      createdAt: false,
+
+      updatedAt: false,
     }
   );
   return Users;

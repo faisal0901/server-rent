@@ -8,7 +8,7 @@ module.exports = (sequelize, dataTypes) => {
         primaryKey: true,
         allowNull: false,
       },
-      Token: {
+      token: {
         type: dataTypes.TEXT,
         allowNull: false,
       },
@@ -19,7 +19,11 @@ module.exports = (sequelize, dataTypes) => {
     },
     {
       tableName: "token",
-      timeStamps: false,
+      timestamps: false,
+
+      createdAt: false,
+
+      updatedAt: false,
     }
   );
   return Token;

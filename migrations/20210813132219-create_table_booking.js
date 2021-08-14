@@ -80,6 +80,8 @@ module.exports = {
         table: "cars",
         field: "id",
       },
+      onDelete: "restrict",
+      onUpdate: "restrict",
     });
   },
 

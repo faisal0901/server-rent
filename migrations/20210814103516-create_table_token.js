@@ -10,7 +10,7 @@ module.exports = {
         autoIncrement: true,
       },
       token: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false,
       },
       user_id: {
@@ -26,6 +26,8 @@ module.exports = {
         table: "users",
         field: "id",
       },
+      onDelete: "cascade",
+      onUpdate: "cascade",
     });
   },
 
