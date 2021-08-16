@@ -33,10 +33,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      address_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
+
       price: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -48,15 +45,6 @@ module.exports = {
       updated_at: {
         type: Sequelize.DATE,
         allowNull: false,
-      },
-    });
-    queryInterface.addConstraint("cars", {
-      type: "foreign key",
-      name: "foreign_key_addres_id",
-      fields: ["address_id"],
-      references: {
-        table: "address",
-        field: "id",
       },
     });
   },

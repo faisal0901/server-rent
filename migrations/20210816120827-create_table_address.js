@@ -49,6 +49,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      cars_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
     });
     await queryInterface.addConstraint("address", {
       name: "city_id_constraint",
@@ -58,6 +62,19 @@ module.exports = {
         table: "city",
         field: "id",
       },
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    });
+    await queryInterface.addConstraint("address", {
+      name: "cars_id_constraint",
+      type: "foreign key",
+      fields: ["cars_id"],
+      references: {
+        table: "cars",
+        field: "id",
+      },
+      onDelete: "cascade",
+      onUpdate: "cascade",
     });
   },
 

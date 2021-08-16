@@ -30,6 +30,15 @@ module.exports = {
         allowNull: false,
       },
     });
+    await queryInterface.addConstraint("cars_feature", {
+      type: "foreign key",
+      name: "cars_feature_foreign_key",
+      fields: ["car_id"],
+      references: {
+        table: "cars",
+        field: "id",
+      },
+    });
   },
 
   down: async (queryInterface, Sequelize) => {

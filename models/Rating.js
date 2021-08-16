@@ -12,6 +12,10 @@ module.exports = (sequelize, dataTypes) => {
         type: dataTypes.INTEGER,
         allowNull: false,
       },
+      rating: {
+        type: dataTypes.INTEGER,
+        allowNull: false,
+      },
       note: {
         type: dataTypes.STRING,
         allowNull: true,
@@ -20,6 +24,9 @@ module.exports = (sequelize, dataTypes) => {
     {
       tableName: "rating",
       timeStamps: false,
+      createdAt: false,
+
+      updatedAt: false,
     }
   );
   return Rating;

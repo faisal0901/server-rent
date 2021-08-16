@@ -30,6 +30,8 @@ module.exports = {
         table: "users",
         field: "id",
       },
+      onDelete: "cascade",
+      onUpdate: "cascade",
     });
   },
 

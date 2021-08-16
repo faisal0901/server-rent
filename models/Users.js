@@ -37,8 +37,7 @@ module.exports = (sequelize, dataTypes) => {
     {
       tableName: "users",
       timestamps: false,
-      onDelete: "cascade",
-      onUpdate: "cascade",
+   
       createdAt: false,
 
       updatedAt: false,
