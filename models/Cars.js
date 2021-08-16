@@ -32,12 +32,19 @@ module.exports = (sequelize, dataTypes) => {
         type: dataTypes.STRING,
         allowNull: false,
       },
-      address_id: {
-        type: dataTypes.INTEGER,
-        allowNull: false,
-      },
+
       price: {
         type: dataTypes.INTEGER,
+      },
+      createdAt: {
+        field: "created_at",
+        type: dataTypes.DATE,
+        allowNull: false,
+      },
+      updatedAt: {
+        field: "updated_at",
+        type: dataTypes.DATE,
+        allowNull: false,
       },
     },
     {

@@ -155,7 +155,7 @@ module.exports = {
       const password = await bcrypt.hash(req.body.password, 10);
       const { name, profession, avatar } = req.body;
 
-      await Users.update({ email, name, profession, password, avatar });
+      await user.update({ email, name, profession, password, avatar });
       return res.json({
         status: "success",
         data: {
