@@ -1,11 +1,11 @@
 const { CarsImage } = require("../models");
-const Validator = require("fastest-validator");
-const v = new Validator();
+const fs = require("fs-extra");
+
 module.exports = {
   createImage: async (req, res) => {
     try {
       const id = req.params.id;
-      console.log(req.files);
+
       if (!req.files) {
         return res.json({ status: "error", message: "input image" });
       }
@@ -27,11 +27,18 @@ module.exports = {
     }
   },
   deleteImage: async (req, res) => {
-    const id = req.params.id;
-    const image = await CarsImage.findByPk(id);
-    if (!image) {
-      return res.json({ message: "image not found", status: "error" });
+    try {
+      const id = req.params.id;
+      const image = await CarsImage.findByPk(id);
+      if (!image) {
+        return res.json({ message: "image not found", status: "error" });
+      }
+      console.log(image);
+      fs.unlink(`./public/${image.image}`);
+      await image.destroy();
+      return res.json({ status: "success", message: "images deleted" });
+    } catch (error) {
+      return res.json({ message: error.message });
     }
-    await image.destory();
   },
 };
