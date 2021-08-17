@@ -1,10 +1,19 @@
 const express = require("express");
 const router = express.Router();
-
-const carsImage = require("../Controllers/carsImage");
+const { uploadMultiple } = require("../middleware/multer");
+const CarsImageControllers = require("../Controllers/CarsImageControllers");
+const verifyToken = require("../middleware/verifytoken");
 /* GET users listing. */
-router.post("/", CarsControllers.createCars);
-router.delete("/:id", CarsControllers.deleteCars);
-router.get("/", CarsControllers.getCars);
-router.put("/:id", CarsControllers.updateCars);
+router.post(
+  "/:id",
+  verifyToken,
+  uploadMultiple,
+  CarsImageControllers.createImage
+);
+router.delete(
+  "/:id",
+  verifyToken,
+  uploadMultiple,
+  CarsImageControllers.createImage
+);
 module.exports = router;

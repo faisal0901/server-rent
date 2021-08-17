@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("cars_feature", {
+    await queryInterface.createTable("cars_image", {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -13,11 +13,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      feature_quantity: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      feature_image: {
+      image: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -30,18 +26,20 @@ module.exports = {
         allowNull: false,
       },
     });
-    await queryInterface.addConstraint("cars_feature", {
+    await queryInterface.addConstraint("cars_image", {
       type: "foreign key",
-      name: "cars_feature_foreign_key",
+      name: "cars_image_foreign_key",
       fields: ["car_id"],
       references: {
         table: "cars",
         field: "id",
       },
+      onDelete: "cascade",
+      onUpdate: "cascade",
     });
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("cars_feature");
+    await queryInterface.dropTable("cars_image");
   },
 };

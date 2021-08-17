@@ -5,21 +5,33 @@ const storage = multer.diskStorage({
   destination: "public/images",
   filename: function (req, file, cb) {
     cb(null, Date.now() + path.extname(file.originalname));
-    checkFileType(file, cb);
   },
 });
-const uploadImage = multer({
+
+const uploadSingle = multer({
   storage: storage,
-  fileFilter: function (req, file, cb) {},
+  // limits: { fileSize: 1000000 },
+  fileFilter: function (req, file, cb) {
+    checkFileType(file, cb);
+  },
+}).single("image");
+
+const uploadMultiple = multer({
+  storage: storage,
+  // limits: { fileSize: 1000000 },
+  fileFilter: function (req, file, cb) {
+    checkFileType(file, cb);
+  },
 }).array("image");
+
 function checkFileType(file, cb) {
-  const fileTypes = /jpeg|png|jpg|gif|svg/;
+  const fileTypes = /jpeg|jpg|png|gif|svg/;
   const extName = fileTypes.test(path.extname(file.originalname).toLowerCase());
-  const mimeTypes = fileTypes.test(file.mimeTypes);
-  if (mimeTypes && extName) {
+  const mimeType = fileTypes.test(file.mimetype);
+  if (mimeType && extName) {
     return cb(null, true);
   } else {
     cb("Error: Images Only !!!");
   }
 }
-module.exports = uploadImage;
+module.exports = { uploadSingle, uploadMultiple };
