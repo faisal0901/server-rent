@@ -9,6 +9,8 @@ const ratingsRouter = require("./routes/ratings");
 const carsRouter = require("./routes/cars");
 const carsImageRouter = require("./routes/carsImage");
 const carsFeatureRouter = require("./routes/carsFeature");
+const cityRouter = require("./routes/city");
+const addressRouter = require("./routes/address");
 const app = express();
 
 app.use(logger("dev"));
@@ -23,4 +25,6 @@ app.use("/ratings", ratingsRouter);
 app.use("/cars", carsRouter);
 app.use("/cars/image", carsImageRouter);
 app.use("/cars/feature", carsFeatureRouter);
+app.use("/city", cityRouter);
+app.use("/address", addressRouter);
 module.exports = app;

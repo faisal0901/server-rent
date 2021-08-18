@@ -10,5 +10,6 @@ router.post(
   uploadMultiple,
   CarsFeatureControllers.createImage
 );
+router.delete("/:id", verifyToken, CarsFeatureControllers.deleteImage);
 
 module.exports = router;

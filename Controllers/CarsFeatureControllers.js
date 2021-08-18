@@ -37,4 +37,16 @@ module.exports = {
       return res.json({ status: "error", message: error.message }).status(500);
     }
   },
+  deleteImage: async (req, res) => {
+    const id = req.params.id;
+    const feature = await CarsFeature.findByPk(id);
+    if (!feature) {
+      return res
+        .status(404)
+        .json({ status: "error", message: "feature not found" });
+    }
+    fs.unlink(`./public/${feature.feature_image}`);
+    await feature.destroy();
+    return res.json({ status: "success", message: "images deleted" });
+  },
 };

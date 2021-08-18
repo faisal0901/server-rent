@@ -4,18 +4,60 @@ module.exports = (sequelize, dataTypes) => {
     {
       id: {
         type: dataTypes.INTEGER,
-        autoIncrement: true,
         primaryKey: true,
+        autoIncrement: true,
         allowNull: false,
       },
-      fullName: {
+      street_name: {
         type: dataTypes.STRING,
+        allowNull: false,
+      },
+      city_id: {
+        type: dataTypes.INTEGER,
+        allowNull: false,
+      },
+      country: {
+        type: dataTypes.INTEGER,
+        allowNull: true,
+      },
+      zipcode: {
+        type: dataTypes.INTEGER,
+        allowNull: true,
+      },
+      phone_number: {
+        type: dataTypes.INTEGER,
+        allowNull: false,
+      },
+      mobile_number: {
+        type: dataTypes.INTEGER,
+        allowNull: true,
+      },
+      longtitude: {
+        type: dataTypes.INTEGER,
+        allowNull: true,
+      },
+      latitude: {
+        type: dataTypes.INTEGER,
+        allowNull: true,
+      },
+      longtitude: {
+        type: dataTypes.INTEGER,
+        allowNull: true,
+      },
+      note: {
+        type: dataTypes.STRING,
+        allowNull: true,
+      },
+      cars_id: {
+        type: dataTypes.INTEGER,
         allowNull: false,
       },
     },
     {
       tableName: "address",
       timeStamps: true,
+      createdAt: false,
+      updatedAt: false,
     }
   );
   return Address;

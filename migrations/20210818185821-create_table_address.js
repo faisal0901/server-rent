@@ -26,25 +26,22 @@ module.exports = {
         allowNull: true,
       },
       phone_number: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       mobile_number: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: true,
       },
       longtitude: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT(30),
         allowNull: true,
       },
       latitude: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT(30),
         allowNull: true,
       },
-      longtitude: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-      },
+
       note: {
         type: Sequelize.STRING,
         allowNull: true,
