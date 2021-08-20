@@ -60,6 +60,16 @@ module.exports = (sequelize, dataTypes) => {
         type: dataTypes.STRING,
         allowNull: false,
       },
+      createdAt: {
+        field: "created_at",
+        type: dataTypes.DATE,
+        allowNull: false,
+      },
+      updatedAt: {
+        field: "updated_at",
+        type: dataTypes.DATE,
+        allowNull: false,
+      },
     },
     {
       tableName: "booking",

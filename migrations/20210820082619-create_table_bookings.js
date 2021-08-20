@@ -50,7 +50,7 @@ module.exports = {
         allowNull: false,
       },
       phoneNumber: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       payment_status: {
@@ -59,7 +59,7 @@ module.exports = {
         defaultValue: "Pending",
       },
       invoice_number: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       created_at: {

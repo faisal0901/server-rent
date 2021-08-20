@@ -34,11 +34,11 @@ module.exports = {
         allowNull: true,
       },
       longtitude: {
-        type: Sequelize.BIGINT(30),
+        type: Sequelize.FLOAT(10, 6),
         allowNull: true,
       },
       latitude: {
-        type: Sequelize.BIGINT(30),
+        type: Sequelize.FLOAT(10, 6),
         allowNull: true,
       },
 
