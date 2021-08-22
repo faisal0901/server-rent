@@ -12,6 +12,7 @@ const carsFeatureRouter = require("./routes/carsFeature");
 const cityRouter = require("./routes/city");
 const addressRouter = require("./routes/address");
 const bookingRouter = require("./routes/booking");
+const cors = require("cors");
 const app = express();
 
 app.use(logger("dev"));
@@ -19,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
+app.use(cors());
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/ratings", ratingsRouter);

@@ -1,3 +1,5 @@
 node_modules
 token.xt
-./public/images/*
+
+public/images/*
+!public/images/.gitkeep
