@@ -22,4 +22,13 @@ module.exports = {
       },
     });
   },
+  getCityByCountryId: async (req, res) => {
+    const id = req.params.id;
+    const city = await City.findAll({
+      where: {
+        country_id: id,
+      },
+    });
+    return res.json({ status: "success", data: city });
+  },
 };

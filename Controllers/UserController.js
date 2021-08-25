@@ -6,90 +6,105 @@ const { JWT_SECRET, JWT_TOKEN_EXPIRED } = process.env;
 const jwt = require("jsonwebtoken");
 module.exports = {
   userRegister: async (req, res) => {
-    const rules = {
-      name: "string|empty:false",
-      email: "string|empty:false",
-      password: "string|empty:false|min:6",
-      profession: "string|optional",
-    };
-    const validate = v.validate(req.body, rules);
+    try {
+      const rules = {
+        name: "string|empty:false",
+        email: "string|empty:false",
+        password: "string|empty:false|min:6",
+        profession: "string|optional",
+      };
+      const validate = v.validate(req.body, rules);
 
-    if (validate.length) {
-      return res.status(400).json({ status: "error", message: validate });
-    }
-    const user = await Users.findOne({ where: { email: req.body.email } });
-    if (user) {
-      return res
-        .json({ status: "error", message: "email already exist" })
-        .status(404);
-    }
-    const password = await bcrypt.hash(req.body.password, 10);
-    const data = {
-      password,
-      name: req.body.name,
-      email: req.body.email,
-      profession: req.body.profession ? "unknow" : req.body.profession,
-      role: "user",
-      avatar: "https://i.stack.imgur.com/l60Hf.png",
-    };
-    const createUser = await Users.create(data);
+      if (validate.length) {
+        return res.status(400).json({ status: "error", message: validate });
+      }
+      const user = await Users.findOne({ where: { email: req.body.email } });
+      if (user) {
+        return res
+          .json({ status: "error", message: "email already exist" })
+          .status(404);
+      }
+      const password = await bcrypt.hash(req.body.password, 10);
+      const data = {
+        password,
+        name: req.body.name,
+        email: req.body.email,
+        profession: req.body.profession ? "unknow" : req.body.profession,
+        role: "user",
+        avatar: "https://i.stack.imgur.com/l60Hf.png",
+      };
+      const createUser = await Users.create(data);
 
-    return res.json({
-      status: "success",
-      data: { id: createUser.id },
-    });
+      return res.json({
+        status: "success",
+        data: { id: createUser.id },
+      });
+    } catch (error) {
+      return res.json({ status: "error", message: error.message });
+    }
   },
   userLogin: async (req, res) => {
-    const rules = {
-      email: "string|empty:false",
-      password: "string|empty:false|min:6",
-    };
-    const validate = v.validate(req.body, rules);
-    if (validate.length) {
-      return res.status(400).status({ status: "error", message: validate });
-    }
-    const user = await Users.findOne({ where: { email: req.body.email } });
-    if (!user) {
-      return res
-        .status(404)
-        .json({ message: "email not found", status: "error" });
-    }
-    const validPassword = await bcrypt.compare(
-      req.body.password,
-      user.password
-    );
-    if (!validPassword) {
-      return res.json({ status: "error", message: "password wrong" });
-    }
-    const token = jwt.sign(
-      {
-        data: {
-          id: user.id,
-          email: user.email,
-          avatar: user.avatar,
-          role: user.role,
+    try {
+      const rules = {
+        email: "string|empty:false",
+        password: "string|empty:false|min:6",
+      };
+      const validate = v.validate(req.body, rules);
+      if (validate.length) {
+        return res.status(400).status({ status: "error", message: validate });
+      }
+      const user = await Users.findOne({ where: { email: req.body.email } });
+      if (!user) {
+        return res
+          .status(404)
+          .json({ message: "email not found", status: "error" });
+      }
+      const validPassword = await bcrypt.compare(
+        req.body.password,
+        user.password
+      );
+      if (!validPassword) {
+        return res.json({ status: "error", message: "password wrong" });
+      }
+      const token = jwt.sign(
+        {
+          data: {
+            id: user.id,
+            email: user.email,
+            avatar: user.avatar,
+            role: user.role,
+          },
         },
-      },
-      JWT_SECRET,
-      { expiresIn: JWT_TOKEN_EXPIRED }
-    );
-    await Token.create({ token: token, user_id: user.id });
-    return res.json({
-      status: "success",
-      token,
-    });
+        JWT_SECRET,
+        { expiresIn: JWT_TOKEN_EXPIRED }
+      );
+      await Token.create({ token: token, user_id: user.id });
+      return res.json({
+        status: "success",
+        token,
+      });
+    } catch (error) {
+      return res.json({ status: "error", message: error.message });
+    }
   },
   userLogout: async (req, res) => {
     const user_id = req.body.user_id;
-    const user = await User.findByPk(user_id);
-    if (!user) {
-      return res.json({ status: "error", message: "user not found" });
+    try {
+      const user = await User.findByPk(user_id);
+      if (!user) {
+        return res.json({ status: "error", message: "user not found" });
+      }
+      await Tekon.destroy({ where: { user_id } });
+      return res.json({
+        status: "succes",
+        message: "token deleted",
+      });
+    } catch (error) {
+      return res.json({
+        status: "error",
+        message: error.message,
+      });
     }
-    await Tekon.destroy({ where: { user_id } });
-    return res.json({
-      status: "succes",
-      message: "token deleted",
-    });
   },
   user: async (req, res) => {
     const id = req.params.id;
@@ -108,11 +123,17 @@ module.exports = {
     });
   },
   users: async (req, res) => {
-    const user = await Users.findAll();
-    return res.json({
-      status: "success",
-      data: user,
-    });
+    const ids = req.user.data.id || [];
+    const sqlOption = {
+      attributes: ["id", "name", "email", "role", "avatar", "profession"],
+    };
+    if (ids) {
+      sqlOption.where = {
+        id: ids,
+      };
+    }
+    const user = await Users.findAll(sqlOption);
+    return res.json({ status: "success", data: user });
   },
   userDestroy: async (req, res) => {
     const id = req.params.id;

@@ -28,11 +28,6 @@ module.exports = (sequelize, dataTypes) => {
         type: dataTypes.STRING,
         allowNull: false,
       },
-      carCC: {
-        type: dataTypes.STRING,
-        allowNull: false,
-      },
-
       price: {
         type: dataTypes.INTEGER,
       },
@@ -52,5 +47,6 @@ module.exports = (sequelize, dataTypes) => {
       timeStamps: true,
     }
   );
+
   return Cars;
 };

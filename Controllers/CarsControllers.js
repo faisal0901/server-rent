@@ -1,4 +1,11 @@
-const { Cars } = require("../models");
+const {
+  Cars,
+  CarsImage,
+  CarsFeature,
+  Address,
+  Country,
+  City,
+} = require("../models");
 const Validator = require("fastest-validator");
 const v = new Validator();
 module.exports = {
@@ -10,7 +17,6 @@ module.exports = {
         carEngine: "string|empty:false",
         carGas: "string|empty:false",
         carHoursePower: "string|empty:false",
-        carCC: "string|empty:false",
         price: "number|empty:false|positive",
       };
       const validate = v.validate(req.body, rules);
@@ -23,7 +29,7 @@ module.exports = {
         carEngine: req.body.carEngine,
         carGas: req.body.carGas,
         carHoursePower: req.body.carHoursePower,
-        carCC: req.body.carCC,
+
         price: req.body.price,
       });
       return res.json({
@@ -35,7 +41,6 @@ module.exports = {
           carEngine: createCars.carEngine,
           carGas: createCars.carGas,
           carHoursePower: createCars.carHoursePower,
-          carCC: createCars.carCC,
           price: createCars.price,
         },
       });
@@ -69,7 +74,6 @@ module.exports = {
         carEngine: "string|empty:false",
         carGas: "string|empty:false",
         carHoursePower: "string|empty:false",
-        carCC: "string|empty:false",
         price: "number|empty:false|positive",
       };
       const validate = v.validate(req.body, rules);
@@ -86,7 +90,7 @@ module.exports = {
         carEngine,
         carGas,
         carHoursePower,
-        carCC,
+
         price,
       } = req.body;
       await car.update({
@@ -95,7 +99,7 @@ module.exports = {
         carEngine,
         carGas,
         carHoursePower,
-        carCC,
+
         price,
       });
       return res.json({
@@ -107,7 +111,7 @@ module.exports = {
           carEngine,
           carGas,
           carHoursePower,
-          carCC,
+
           price,
         },
       });
@@ -126,7 +130,6 @@ module.exports = {
         "carEngine",
         "carGas",
         "carHoursePower",
-        "carCC",
         "price",
       ],
     };
@@ -136,6 +139,7 @@ module.exports = {
       };
     }
     const cars = await Cars.findAll(sqlOption);
+
     return res.json({ status: "success", data: cars });
   },
 };

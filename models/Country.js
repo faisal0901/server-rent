@@ -20,6 +20,8 @@ module.exports = (sequelize, dataTypes) => {
     {
       tableName: "country",
       timeStamps: false,
+      createdAt: false,
+      updatedAt: false,
     }
   );
   return Country;

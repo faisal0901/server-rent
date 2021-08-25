@@ -12,6 +12,8 @@ const carsFeatureRouter = require("./routes/carsFeature");
 const cityRouter = require("./routes/city");
 const addressRouter = require("./routes/address");
 const bookingRouter = require("./routes/booking");
+const countryRouter = require("./routes/Country");
+const homePageRouter = require("./routes/HomePage");
 const cors = require("cors");
 const app = express();
 
@@ -30,4 +32,6 @@ app.use("/cars/feature", carsFeatureRouter);
 app.use("/city", cityRouter);
 app.use("/address", addressRouter);
 app.use("/booking", bookingRouter);
+app.use("/country", countryRouter);
+app.use("/homepage", homePageRouter);
 module.exports = app;

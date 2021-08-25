@@ -42,5 +42,31 @@ Object.keys(db).forEach((modelName) => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+db.Cars = require("../models/Cars")(sequelize, Sequelize);
+db.CarsImage = require("../models/CarsImage")(sequelize, Sequelize);
+db.CarsFeature = require("../models/CarsFeature")(sequelize, Sequelize);
+db.Address = require("../models/Address")(sequelize, Sequelize);
+db.City = require("../models/City")(sequelize, Sequelize);
+db.Country = require("../models/Country")(sequelize, Sequelize);
+db.Rating = require("../models/Rating")(sequelize, Sequelize);
+db.Users = require("../models/Users")(sequelize, Sequelize);
+db.Cars.hasMany(db.CarsImage, {
+  foreignKey: "car_id",
+});
+db.Cars.hasMany(db.CarsFeature, {
+  foreignKey: "car_id",
+});
+db.Cars.hasMany(db.Address, {
+  foreignKey: "cars_id",
+});
+db.Address.belongsTo(db.City, {
+  foreignKey: "city_id",
+});
+db.City.belongsTo(db.Country, {
+  foreignKey: "country_id",
+});
+db.Rating.belongsTo(db.Users, {
+  foreignKey: "user_id",
+});
 
 module.exports = db;

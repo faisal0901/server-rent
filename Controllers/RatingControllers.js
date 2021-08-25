@@ -22,7 +22,7 @@ module.exports = {
       });
       return res.json({ message: "success", data: { createRating } });
     } catch (error) {
-      console.log(error);
+      return res.json({ status: "error", message: error.message });
     }
   },
   ratingDelete: async (req, res) => {
@@ -35,7 +35,7 @@ module.exports = {
       await rating.destroy();
       return res.json({ status: "success", massage: "rating deleted" });
     } catch (error) {
-      console.log(error);
+      return res.json({ status: "error", message: error.message });
     }
   },
 };
