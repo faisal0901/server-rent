@@ -14,6 +14,8 @@ const addressRouter = require("./routes/address");
 const bookingRouter = require("./routes/booking");
 const countryRouter = require("./routes/Country");
 const homePageRouter = require("./routes/HomePage");
+const detailPageRouter = require("./routes/DetailsPage");
+const searchPageRouter = require("./routes/Search");
 const cors = require("cors");
 const app = express();
 
@@ -34,4 +36,6 @@ app.use("/address", addressRouter);
 app.use("/booking", bookingRouter);
 app.use("/country", countryRouter);
 app.use("/homepage", homePageRouter);
+app.use("/detail", detailPageRouter);
+app.use("/search", searchPageRouter);
 module.exports = app;
