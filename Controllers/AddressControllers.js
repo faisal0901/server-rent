@@ -87,8 +87,8 @@ module.exports = {
   },
   getAddress: async (req, res) => {
     try {
-      const id = req.params.id;
-      const address = await Address.findByPk(id);
+      // const id = req.params.id;
+      const address = await Address.findAll();
       if (!address) {
         return res.json({ message: "addres not found", status: "error" });
       }

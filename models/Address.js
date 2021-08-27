@@ -16,10 +16,7 @@ module.exports = (sequelize, dataTypes) => {
         type: dataTypes.INTEGER,
         allowNull: false,
       },
-      country: {
-        type: dataTypes.INTEGER,
-        allowNull: true,
-      },
+
       zipcode: {
         type: dataTypes.INTEGER,
         allowNull: true,

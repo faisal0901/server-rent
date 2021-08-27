@@ -17,10 +17,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      country: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-      },
       zipcode: {
         type: Sequelize.INTEGER,
         allowNull: true,
@@ -41,7 +37,6 @@ module.exports = {
         type: Sequelize.FLOAT(10, 6),
         allowNull: true,
       },
-
       note: {
         type: Sequelize.STRING,
         allowNull: true,
