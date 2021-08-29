@@ -41,6 +41,7 @@ module.exports = {
             ],
           },
         ],
+        limit: 9,
       };
       if (car_ids.length) {
         sqlOption.where = {

@@ -8,6 +8,13 @@ const {
 } = require("../../models");
 module.exports = {
   searchPage: async (req, res) => {
+    const dataPerpage = 3;
+    const carsData = await Cars.findAll();
+    const activePage = +req.query.page || 1;
+    const dataOffset = dataPerpage * activePage - dataPerpage;
+    const totalData = carsData.length;
+    const totalPage = Math.ceil(totalData / dataPerpage);
+
     try {
       const sqlOption = {
         attributes: [
@@ -40,7 +47,10 @@ module.exports = {
           },
         ],
       };
-
+      if (activePage >= 1) {
+        sqlOption.limit = dataPerpage;
+        sqlOption.offset = dataOffset;
+      }
       const cars = await Cars.findAll(sqlOption);
       const mapped = [];
 
@@ -68,7 +78,14 @@ module.exports = {
           },
         });
       });
-      return res.json({ cars: mapped });
+
+      return res.json({
+        cars: mapped,
+        totalPage,
+        activePage,
+        nextPage: activePage >= totalPage ? null : activePage + 1,
+        prevPage: activePage === 1 ? null : activePage - 1,
+      });
     } catch (error) {
       return res.json({ message: error.message });
     }

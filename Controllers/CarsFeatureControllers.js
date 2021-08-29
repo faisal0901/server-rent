@@ -22,7 +22,7 @@ module.exports = {
       const create = await CarsFeature.create({
         car_id: id,
         feature_quantity: req.body.feature_quantity,
-        feature_image: `public/${req.files[0].filename}`,
+        feature_image: `images/${req.files[0].filename}`,
       });
       return res.json({
         status: "succes",
