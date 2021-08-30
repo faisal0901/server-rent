@@ -64,6 +64,7 @@ module.exports = {
             street_name: v.Addresses[0].street_name,
             zipcode: v.Addresses[0].zipcode,
             phone_number: v.Addresses[0].phone_number,
+            mobile_number: v?.Addresses?.[0].mobile_number ?? null,
             longtitude: v.Addresses[0].longtitude,
             latitude: v.Addresses[0].latitude,
             note: v.Addresses[0].note,
