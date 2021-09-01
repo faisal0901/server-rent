@@ -16,10 +16,6 @@ module.exports = (sequelize, dataTypes) => {
         type: dataTypes.INTEGER,
         allowNull: true,
       },
-      car_id: {
-        type: dataTypes.INTEGER,
-        allowNull: true,
-      },
     },
     {
       tableName: "token",

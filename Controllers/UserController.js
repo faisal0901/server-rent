@@ -20,9 +20,7 @@ module.exports = {
       }
       const user = await Users.findOne({ where: { email: req.body.email } });
       if (user) {
-        return res
-          .json({ status: "error", message: "email already exist" })
-          .status(404);
+        return res.json({ status: "error", message: "email already exist" });
       }
       const password = await bcrypt.hash(req.body.password, 10);
       const data = {
@@ -55,9 +53,7 @@ module.exports = {
       }
       const user = await Users.findOne({ where: { email: req.body.email } });
       if (!user) {
-        return res
-          .status(404)
-          .json({ message: "email not found", status: "error" });
+        return res.json({ message: "email not found", status: "error" });
       }
       const validPassword = await bcrypt.compare(
         req.body.password,

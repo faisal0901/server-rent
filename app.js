@@ -16,6 +16,7 @@ const countryRouter = require("./routes/Country");
 const homePageRouter = require("./routes/HomePage");
 const detailPageRouter = require("./routes/DetailsPage");
 const searchPageRouter = require("./routes/Search");
+const getTokenRouter = require("./routes/getToken");
 const cors = require("cors");
 const app = express();
 
@@ -38,4 +39,5 @@ app.use("/country", countryRouter);
 app.use("/homepage", homePageRouter);
 app.use("/detail", detailPageRouter);
 app.use("/search", searchPageRouter);
+app.use("/token", getTokenRouter);
 module.exports = app;
