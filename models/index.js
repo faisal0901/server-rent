@@ -50,6 +50,7 @@ db.City = require("../models/City")(sequelize, Sequelize);
 db.Country = require("../models/Country")(sequelize, Sequelize);
 db.Rating = require("../models/Rating")(sequelize, Sequelize);
 db.Users = require("../models/Users")(sequelize, Sequelize);
+db.Booking = require("../models/Booking")(sequelize, Sequelize);
 db.Cars.hasMany(db.CarsImage, {
   foreignKey: "car_id",
 });
@@ -68,5 +69,10 @@ db.City.belongsTo(db.Country, {
 db.Rating.belongsTo(db.Users, {
   foreignKey: "user_id",
 });
-
+db.Booking.belongsTo(db.Cars, {
+  foreignKey: "car_id",
+});
+db.Booking.belongsTo(db.Users, {
+  foreignKey: "user_id",
+});
 module.exports = db;

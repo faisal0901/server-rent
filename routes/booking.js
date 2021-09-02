@@ -9,4 +9,5 @@ router.post(
   uploadMultiple,
   BookingsControllers.createBooking
 );
+router.get("/:id", BookingsControllers.getBookings);
 module.exports = router;
