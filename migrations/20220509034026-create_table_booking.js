@@ -62,10 +62,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      user_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -82,17 +78,6 @@ module.exports = {
       fields: ["car_id"],
       references: {
         table: "cars",
-        field: "id",
-      },
-      onDelete: "restrict",
-      onUpdate: "restrict",
-    });
-    await queryInterface.addConstraint("booking", {
-      type: "foreign key",
-      name: "user_car_id",
-      fields: ["user_id"],
-      references: {
-        table: "users",
         field: "id",
       },
       onDelete: "restrict",

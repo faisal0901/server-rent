@@ -7,7 +7,7 @@ module.exports = {
       [
         {
           street_name: "Jalan Radar Auri",
-          city_id: 7,
+          city_id:1,
           zipcode: 16452,
           phone_number: "08123819491",
           mobile_number: "08123819491",
@@ -18,7 +18,7 @@ module.exports = {
         },
         {
           street_name: "Jalan margonda raya no 102",
-          city_id: 7,
+          city_id:2,
           zipcode: 16452,
           phone_number: "0812931923",
           mobile_number: "021912994",
@@ -29,7 +29,7 @@ module.exports = {
         },
         {
           street_name: "Jalan Raya Bogor KM21",
-          city_id: 7,
+          city_id:3,
           zipcode: 16951,
           phone_number: "08123132121",
           mobile_number: "02148834828",
@@ -40,7 +40,7 @@ module.exports = {
         },
         {
           street_name: "Jalan Stm Mandiri Depok\r\n",
-          city_id: 7,
+          city_id:2,
           zipcode: 16431,
           phone_number: "088218374",
           mobile_number: "088218374",
@@ -51,7 +51,7 @@ module.exports = {
         },
         {
           street_name: "jalan swadaya 2 no 102 ",
-          city_id: 7,
+          city_id:2,
           zipcode: 16452,
           phone_number: "0812399221",
           mobile_number: "081231321",
@@ -62,7 +62,7 @@ module.exports = {
         },
         {
           street_name: "Jalan tipar tengah no 41",
-          city_id: 7,
+          city_id:2,
           zipcode: 16452,
           phone_number: "088218374",
           mobile_number: "088218374",
@@ -73,7 +73,7 @@ module.exports = {
         },
         {
           street_name: "Jalan Griya Cimanggis",
-          city_id: 7,
+          city_id:2,
           zipcode: 16452,
           phone_number: "081928212",
           mobile_number: "08912842",
@@ -84,25 +84,25 @@ module.exports = {
         },
         {
           street_name: "Jalan abdurahman",
-          city_id: 12,
+          city_id:1,
           zipcode: 13720,
           phone_number: "081928212123",
           mobile_number: "0891284212",
           longtitude: 106.88408425419506,
           latitude: -6.363897101918306,
           note: null,
-          cars_id: 10,
+          cars_id: 3,
         },
         {
           street_name: "Setu Cipayung",
-          city_id: 12,
+         city_id:1,
           zipcode: 13720,
           phone_number: "081983910381",
           mobile_number: "089516543215",
           longtitude: 106.9013634808237,
           latitude: -6.328565614601164,
           note: null,
-          cars_id: 11,
+          cars_id: 3,
         },
       ],
       {}

@@ -2,36 +2,34 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("token", {
+    await queryInterface.createTable("city", {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
       },
-      token: {
-        type: Sequelize.TEXT,
+      name: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
-      user_id: {
+      country_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
     });
-    await queryInterface.addConstraint("token", {
+    await queryInterface.addConstraint("city", {
       type: "foreign key",
-      name: "token_user_id",
-      fields: ["user_id"],
+      name: "country_foreign_key",
+      fields: ["country_id"],
       references: {
-        table: "users",
+        table: "country",
         field: "id",
       },
-      onDelete: "cascade",
-      onUpdate: "cascade",
     });
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("token");
+    await queryInterface.dropTable("city");
   },
 };

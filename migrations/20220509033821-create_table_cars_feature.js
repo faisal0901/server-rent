@@ -1,8 +1,8 @@
-"use strict";
+("use strict");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("cars_image", {
+    await queryInterface.createTable("cars_feature", {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -13,7 +13,11 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      image: {
+      feature_quantity: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      feature_image: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -26,9 +30,9 @@ module.exports = {
         allowNull: false,
       },
     });
-    await queryInterface.addConstraint("cars_image", {
+    await queryInterface.addConstraint("cars_feature", {
       type: "foreign key",
-      name: "cars_image_foreign_key",
+      name: "cars_feature_foreign_key",
       fields: ["car_id"],
       references: {
         table: "cars",
@@ -40,6 +44,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("cars_image");
+    await queryInterface.dropTable("cars_feature");
   },
 };
